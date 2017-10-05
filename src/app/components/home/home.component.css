@@ -1,0 +1,26 @@
+.input-container {
+    position: absolute;
+    left: 20%;
+    width: 100%;
+    display: flex;
+    max-width: 55%;
+    min-width: 10%;
+}
+form {
+    order: 1;
+    flex-basis: auto;
+    flex-grow: 2;
+}
+md-form-field {
+    width: 100%;
+}
+button.input-button {
+    order: 2;
+    flex-grow: 1;
+    flex-basis: auto;
+    max-width: 120px;
+    max-height: 36px;
+    color: #039be5;
+    align-self: center;
+    margin: 0px 0px 0px 30px;
+}
