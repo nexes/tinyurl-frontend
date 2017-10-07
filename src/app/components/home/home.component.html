@@ -9,7 +9,7 @@
     <md-checkbox class="expire-check" color="primary" [(ngModel)]="expire">Set expiration date</md-checkbox>
     <md-form-field class="expire-date">
         <input mdInput [disabled]="!expire" [mdDatepicker]="datePicker" [(ngModel)]="expirationDate">
-        <md-datepicker-toggle mdSuffix [for]="datePicker"></md-datepicker-toggle>
+        <md-datepicker-toggle mdPrefix [for]="datePicker"></md-datepicker-toggle>
         <md-datepicker #datePicker></md-datepicker>
     </md-form-field>
     <div class="input-button">

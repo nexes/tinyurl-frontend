@@ -10,17 +10,20 @@
     grid-row-end: span 2;
 }
 .input-container input {
-    text-align: center;
+    text-align: left;
     font-size: 20px;
 }
 .input-container md-form-field {
-    width: 100%;
+    width: 90%;
 }
 .input-button {
     grid-column-start: 3;
-    grid-row-start: 4;
-    grid-row-end: span 5;
+    grid-row-start: 1;
+    grid-row-end: span 2;
     color: #039be5;
+    margin: 25px 0px 0px 10px;
+    justify-self: end;
+    -moz-justify-self: end;
 }
 .input-button button {
     font-weight: bold;
@@ -33,13 +36,12 @@
     grid-row-start: 3;
 }
 .expire-date {
-    width: 100%;
     margin: 0px;
     align-self: center;
-    grid-column-start: 3;
-    grid-row-start:  3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start:  4;
     padding: 0px;
-    text-align: center;
 }
 .shorten-output {
     grid-row-start: 6;
