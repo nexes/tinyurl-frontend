@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 export interface ShortUrl {
     url: string;
     status: number;
+    message: string;
     original?: string;
     count?: number;
     expiration?: string;
