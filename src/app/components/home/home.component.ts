@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ShortenService, ShortUrl } from '../../services/shorten.service';
+import { DialogWindowService } from '../../services/dialog-window.service';
 
 
 @Component({
@@ -13,8 +14,10 @@ export class HomeComponent {
     private expire: boolean;
     private showNewUrl: boolean;
     private expirationDate: Date;
+    private minExpiration: Date;
 
-    constructor(private shortener: ShortenService) {
+
+    constructor(private shortener: ShortenService, private dialog: DialogWindowService) {
         this.originalURL = '';
         this.shortenURL = '';
         this.expire = false;
@@ -23,17 +26,25 @@ export class HomeComponent {
     }
 
     submitLink() {
+        if (this.originalURL.length === 0) {
+            return;
+        }
+
         this.shortener.create(this.originalURL, this.expirationDate).subscribe(
             (resp: ShortUrl) => {
-                console.log(resp);
-
-                if (resp.status === 200) {
+                if (resp.message === 'success') {
                     this.shortenURL = resp.url;
+                    this.expirationDate = new Date(resp.expiration);
                     this.showNewUrl = true;
+                } else {
+                    this.showNewUrl = false;
+                    this.dialog.openErrorDialog('Error', resp.message);
                 }
             },
             (err) => {
                 console.log('creation error ', err);
+                this.showNewUrl = false;
+                this.dialog.openErrorDialog('Error', err.message);
             }
         );
 

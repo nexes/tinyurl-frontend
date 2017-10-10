@@ -22,7 +22,18 @@ export class ShortenService {
         this.baseURL = 'http://localhost:8000/api/shorten/';
     }
 
-    create(longUrl: string, expiration?: Date): Observable<ShortUrl> {
+    create(longUrl: string, expireDate?: Date): Observable<ShortUrl> {
+        if (expireDate) {
+            return this.http.post<ShortUrl>(`${this.baseURL}create/`, {
+                'url': longUrl,
+                'expiration': {
+                    'year': expireDate.getUTCFullYear(),
+                    'month': expireDate.getUTCMonth() + 1,
+                    'day': expireDate.getUTCDate()
+                }
+            });
+        }
+
         return this.http.post<ShortUrl>(`${this.baseURL}create/`, {
             'url': longUrl
         });
