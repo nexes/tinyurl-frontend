@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 
 export interface ShortUrl {
@@ -19,7 +20,7 @@ export class ShortenService {
 
 
     constructor(private http: HttpClient) {
-        this.baseURL = 'http://localhost:8000/api/shorten/';
+        this.baseURL = `${environment.host}/api/shorten/`;
     }
 
     create(longUrl: string, expireDate?: Date): Observable<ShortUrl> {
@@ -45,5 +46,9 @@ export class ShortenService {
 
     usageCount(urlHash: string): Observable<ShortUrl> {
         return this.http.get<ShortUrl>(`${this.baseURL}usage/${urlHash}/`);
+    }
+
+    originalUrl(urlHash: string): Observable<ShortUrl> {
+        return this.http.get<ShortUrl>(`${this.baseURL}original/${urlHash}/`);
     }
 }
