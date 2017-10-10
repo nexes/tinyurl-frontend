@@ -11,13 +11,15 @@ import {
     MatDatepickerModule,
     MdNativeDateModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MdIconModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorDialogComponent } from './components/error/error.component';
+import { InformationComponent } from './components/information/information.component';
 
 import { ShortenService } from './services/shorten.service';
 import { DialogWindowService } from './services/dialog-window.service';
@@ -27,7 +29,8 @@ import { DialogWindowService } from './services/dialog-window.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,
@@ -41,14 +44,16 @@ import { DialogWindowService } from './services/dialog-window.service';
     MatDatepickerModule,
     MdNativeDateModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MdIconModule
   ],
   providers: [
     ShortenService,
     DialogWindowService
   ],
   entryComponents: [
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    InformationComponent
   ],
   bootstrap: [AppComponent]
 })
