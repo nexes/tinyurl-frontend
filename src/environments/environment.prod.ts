@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  host: 'http://www.smallerlinks.com'
+  host: 'https://www.smallerlinks.com',
+  domain: 'smallerlinks.com'
 };
