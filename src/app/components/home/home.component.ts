@@ -11,6 +11,7 @@ import { environment } from '../../../environments/environment';
 })
 export class HomeComponent {
     private shortenURL: string;
+    private displayURL: string;
     private originalURL: string;
     private expire: boolean;
     private showNewUrl: boolean;
@@ -21,6 +22,7 @@ export class HomeComponent {
     constructor(private shortener: ShortenService, private dialog: DialogWindowService) {
         this.originalURL = '';
         this.shortenURL = '';
+        this.displayURL = '';
         this.expire = false;
         this.showNewUrl = false;
         this.expirationDate = undefined;
@@ -33,7 +35,8 @@ export class HomeComponent {
         this.shortener.create(this.originalURL, this.expirationDate).subscribe(
             (resp: ShortUrl) => {
                 if (resp.message === 'success') {
-                    this.shortenURL = resp.url;
+                    this.shortenURL = `${environment.host}/${resp.url}`;
+                    this.displayURL = `${environment.domain}/${resp.url}`;
                     this.expirationDate = new Date(resp.expiration);
                     this.showNewUrl = true;
                 } else {
@@ -52,8 +55,7 @@ export class HomeComponent {
     }
 
     private checkForUrlHash(): boolean {
-        if (this.originalURL.toLowerCase().includes(environment.host) ||
-            `http://${this.originalURL.toLowerCase()}`.includes(environment.host)) {
+        if (this.originalURL.toLowerCase().includes(environment.host)) {
             const hash = this.originalURL.substring(this.originalURL.lastIndexOf('/') + 1, this.originalURL.length);
 
             this.shortener.originalUrl(hash).subscribe(
