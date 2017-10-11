@@ -55,7 +55,7 @@ export class HomeComponent {
     }
 
     private checkForUrlHash(): boolean {
-        if (this.originalURL.toLowerCase().includes(environment.host)) {
+        if (this.originalURL.toLowerCase().includes('smallerlinks.com')) {
             const hash = this.originalURL.substring(this.originalURL.lastIndexOf('/') + 1, this.originalURL.length);
 
             this.shortener.originalUrl(hash).subscribe(
